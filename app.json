@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "mealthy",
+    "slug": "mealthy",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "ios": {
+      "bundleIdentifier": "com.yourapp.identifier",
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "We need access to your photo library to update your profile picture.",
+        "NSCameraUsageDescription": "We need access to your camera to take a new profile picture."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-font"
+    ]
+  }
+}
