@@ -45,7 +45,6 @@ app.post("/users", async (req, res, next) => {
 });
 
 // Login endpoint
-// Login endpoint
 app.post("/api/login", async (req, res, next) => {
   const { email, password } = req.body;
 
@@ -174,61 +173,6 @@ app.get('/users/:user_id', async (req, res) => {
   }
 });
 
-
-// // Get all foods from the database
-// app.get("/foods", async (req, res, next) => {
-//   try {
-//     const result = await pool.query("SELECT * FROM foods");
-//     res.json(result.rows);
-//   } catch (err) {
-//     console.error(err.message); // biar keliatan di console errornya apa
-//     next(err);
-//   }
-// });
-
-// // Get a single food by ID
-// app.get("/foods/:id", async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const result = await pool.query("SELECT * FROM foods WHERE id = $1", [id]);
-//     res.json(result.rows[0]);
-//   } catch (err) {
-//     console.error(err.message); // biar keliatan di console errornya apa
-//     next(err);
-//   }
-// });
-
-// // Add a new food item
-// app.post("/foods", async (req, res) => {
-//   try {
-//     const { name, calories } = req.body;
-//     const result = await pool.query(
-//       "INSERT INTO foods (name, calories) VALUES ($1, $2) RETURNING *",
-//       [name, calories]
-//     );
-//     res.json(result.rows[0]);
-//   } catch (err) {
-//     console.error(err.message); // biar keliatan di console errornya apa
-//     next(err);
-//   }
-// });
-
-// // Update a food item
-// app.put("/foods/:id", async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const { name, calories } = req.body;
-//     await pool.query(
-//       "UPDATE foods SET name = $1, calories = $2 WHERE id = $3",
-//       [name, calories, id]
-//     );
-//     res.send("Food item updated successfully");
-//   } catch (err) {
-//     console.error(err.message); // biar keliatan di console errornya apa
-//     next(err);
-//   }
-// });
-
 // Get all foods from the database
 app.get("/api/foods", async (req, res, next) => {
   try {
@@ -256,18 +200,6 @@ app.get("/api/foods/name/:name", async (req, res, next) => {
     next(err);
   }
 });
-
-// // Delete a food item
-// app.delete("/foods/:id", async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     await pool.query("DELETE FROM foods WHERE id = $1", [id]);
-//     res.send("Food item deleted");
-//   } catch (err) {
-//     console.error(err.message); // biar keliatan di console errornya apa
-//     next(err);
-//   }
-// });
 
 // Add a new route to handle adding a calorie log entry
 app.post("/api/calorie_log", async (req, res, next) => {
@@ -544,8 +476,6 @@ app.put('/api/Recipes/:id', async (req, res) => {
   }
 });
 
-
-
 // Delete a recipe
 app.delete('/recipes/:id', async (req, res) => {
   const { id } = req.params;
@@ -620,48 +550,6 @@ app.delete("/favorite_recipes", async (req, res, next) => {
   }
 });
 
-// app.get('/api/nutritions', async (req, res) => {
-//   try {
-//     // Extract userId from query parameters
-//     const userId = req.query.userId;
-
-//     // Log the userId to make sure it's being extracted properly
-//     console.log('Extracted userId:', userId);
-
-//     if (!userId) {
-//       return res.status(400).json({ message: "User ID is required" });
-//     }
-
-//     const today = new Date();
-//     today.setHours(0, 0, 0, 0);
-
-//     const allNutrition = await Nutrition.findAll({
-//       order: [['createdat', 'DESC']],
-//     });
-
-//     const filteredNutrition = [];
-//     for (const nutrition of allNutrition) {
-//       const userNutrition = await UserNutrition.findOne({
-//         where: {
-//           userId: userId,
-//           nutritionId: nutrition.id,
-//         },
-//       });
-
-//       if (!userNutrition || !userNutrition.lastShown || userNutrition.lastShown.getTime() < today.getTime()) {
-//         const updatedNutrition = nutrition.toJSON();
-//         updatedNutrition.image = `${req.protocol}://${req.get('host')}${nutrition.image}`;
-//         filteredNutrition.push(updatedNutrition);
-//       }
-//     }
-
-//     res.json(filteredNutrition);
-//   } catch (error) {
-//     console.error('Error fetching data:', error);
-//     res.status(500).json({ message: 'Error fetching data', error: error.message });
-//   }
-// });
-
 // Get a specific nutrition record by ID
 app.get("/api/nutritions", async (req, res, next) => {
   try {
@@ -673,7 +561,6 @@ app.get("/api/nutritions", async (req, res, next) => {
     next(err);
   }
 });
-
 
 app.get("/api/nutritions/:id", async (req, res, next) => {
   try {
